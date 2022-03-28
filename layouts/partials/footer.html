@@ -1,4 +1,47 @@
           <footer class="footline">
+        {{ with .Params.date }}
+            <div>
+              Article Created: <i class='fas fa-calendar'></i> {{ .Format "01/02/2006" }}
+            </div>
+        {{ end }}
+        {{ with .Params.lastMod }}
+            <div>
+              Article Last Edited: <i class='fas fa-calendar'></i> {{ .Format "01/02/2006" }}
+            </div>
+        {{ end }}
+        {{ if .Params.lastEditor }}
+            {{ if .Params.lastEditorGitHub }}
+            <div>
+              Last Editor: <i class='fas fa-user'></i> <a href="https://github.com/{{ $.Params.lastEditorGitHub }}">{{ $.Params.lastEditor }}</a>
+            </div>
+            {{ else }}
+            <div>
+              Last Editor: <i class='fas fa-user'></i> {{ $.Params.lastEditor }}</a>
+            </div> 
+            {{ end }}
+        {{ end }}
+        {{ if .Params.originalAuthor }}
+            {{ if .Params.originalAuthorGitHub }}
+            <div>
+              Original Author: <i class='fas fa-user'></i> <a href="https://github.com/{{ $.Params.originalAuthorGitHub }}">{{ $.Params.originalAuthor }}</a>
+            </div>
+            {{ else }}
+            <div>
+              Original Author: <i class='fas fa-user'></i> {{ $.Params.originalAuthor }}</a>
+            </div> 
+            {{ end }}
+        {{ end }}
+        {{ if .Params.reviewer }}
+            {{ if .Params.reviewerGitHub }}
+            <div>
+              Reviewer: <i class='fas fa-user'></i> <a href="https://github.com/{{ $.Params.reviewerGitHub }}">{{ $.Params.reviewer }}</a>
+            </div>
+            {{ else }}
+            <div>
+              Reviewer: <i class='fas fa-user'></i> {{ $.Params.reviewer }}</a>
+            </div> 
+            {{ end }}
+        {{ end }}
         {{- with .Params.LastModifierDisplayName }}
             <i class='fas fa-user'></i> <a href="mailto:{{ $.Params.LastModifierEmail }}">{{ . }}</a> {{ with $.Date }} <i class='fas fa-calendar'></i> {{ .Format "02/01/2006" }}{{ end }}
         {{- end }}
